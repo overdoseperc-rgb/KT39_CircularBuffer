@@ -28,10 +28,7 @@ namespace ConsoleApp1
             }
         }
 
-        private int GetIndex(int offset)
-        {
-            return (int)(((long)start + offset) % items.Length);
-        }
+        private int GetIndex(int offset) => (int)(((long)start + offset) % items.Length);
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -41,10 +38,7 @@ namespace ConsoleApp1
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public IEnumerable<T> Reverse()
         {

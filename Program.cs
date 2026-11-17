@@ -5,14 +5,27 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             var buffer = new CircularBuffer<int>(3);
+            Console.WriteLine("Буфер хранит три последних числа.");
+            Console.WriteLine("Вводи по одному целому числу. Пустая строка завершает ввод.");
 
-            buffer.Add(1);
-            buffer.Add(2);
-            buffer.Add(3);
-            Console.WriteLine($"После заполнения: {string.Join(", ", buffer)}");
+            while (true)
+            {
+                Console.Write("Число: ");
+                string? input = Console.ReadLine();
 
-            buffer.Add(4);
-            buffer.Add(5);
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    break;
+                }
+
+                if (!int.TryParse(input, out int number))
+                {
+                    Console.WriteLine("Введи целое число.");
+                    continue;
+                }
+
+                buffer.Add(number);
+            }
 
             Console.WriteLine("От старого к новому:");
             foreach (int number in buffer)
