@@ -4,8 +4,25 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            var buffer = new CircularBuffer<int>(3);
-            Console.WriteLine("Буфер хранит три последних числа.");
+            int capacity;
+            while (true)
+            {
+                Console.Write("Сколько чисел хранить? ");
+                string? capacityInput = Console.ReadLine();
+                if (capacityInput == null)
+                {
+                    return;
+                }
+
+                if (int.TryParse(capacityInput, out capacity) && capacity > 0)
+                {
+                    break;
+                }
+
+                Console.WriteLine("Введи целое число больше нуля.");
+            }
+
+            var buffer = new CircularBuffer<int>(capacity);
             Console.WriteLine("Вводи по одному целому числу. Пустая строка завершает ввод.");
 
             while (true)
